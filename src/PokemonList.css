@@ -1,0 +1,33 @@
+h1{
+ text-align: center;   
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    margin:0 15%;
+    padding: 1rem;
+   
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th,
+  td {
+    border: 1px solid lightgray;
+    text-align: left;
+    padding: 1rem;
+    font-size: 1.5rem;
+  }
+  
+tbody tr:nth-child(odd) {
+    background-color:rgb(225, 229, 228)
+    
+}
+  
+  
+  
+  
