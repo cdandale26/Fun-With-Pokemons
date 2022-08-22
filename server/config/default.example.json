@@ -1,0 +1,6 @@
+//enter your username and password for your database and the database name
+
+
+{
+    "mongoURI": "mongodb+srv://<username>:<password>@cluster0.d9nbw.mongodb.net/<databasename>?retryWrites=true&w=majority"
+}
