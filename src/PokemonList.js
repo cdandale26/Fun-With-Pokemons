@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./PokemonList.css";
+import { useNavigate } from "react-router-dom";
 
-const fetchPokemons = async () => {
+//function to get pokemons from the listed url
+const fetchPokemons = async (url) => {
   try {
-    const pokemon = await axios.get("http://localhost:3001/");
+    const pokemon = await axios.get(url);
     const pokemonData = pokemon.data.results;
     return pokemonData;
   } catch (error) {
@@ -14,25 +16,30 @@ const fetchPokemons = async () => {
 
 const PokemonList = () => {
   const [pokemon, setPokemon] = useState([]);
-  //const [favoritePokemon, setFavoritePokemon] = useState({});
+  const navigate = useNavigate();
 
   const selectPokemon = (rowValue) => {
     let pokemon = rowValue;
-    //console.log(pokemon);
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ data: pokemon }),
-    }).then((res) => console.log("Request sent...."));
+    }).then((res) => console.logl("Request sent...."));
   };
 
   useEffect(() => {
-    fetchPokemons().then((result) => setPokemon(result));
+    fetchPokemons("http://localhost:3001/").then((result) =>
+      setPokemon(result)
+    );
   }, []);
 
   return (
     <>
-      <h1>List of Pokemons with their powers</h1>
+      <h1>Welcome to the world of Pokemon!!</h1>
+      <h3>List of all the pokemons with their powers</h3>
+      <button id="favButton" onClick={() => navigate("/favoritePokemons")}>
+        Checkout your favorite Pokemons
+      </button>
       <div className="app-container">
         <table>
           <thead>

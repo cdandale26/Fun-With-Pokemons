@@ -9,7 +9,7 @@ const fetch = (...args) =>
 
 const getPokemonList = async () => {
   try {
-    const pokemon = await fetch("https://pokeapi.co/api/v2/pokemon?limit=30")
+    const pokemon = await fetch("https://pokeapi.co/api/v2/pokemon?limit=20")
       .then((response) => response.json())
       .then((data) => data.results);
 
@@ -65,6 +65,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", async (req, res) => {
   const pokemons = await getPokemonList();
   res.status(200).json({ results: pokemons });
+});
+
+app.get("/favoritePokemons", (req, res) => {
+  pokemonSchema.find({}).then((pokemons) => res.status(200).send(pokemons));
 });
 
 app.post("/", async (req, res) => {
